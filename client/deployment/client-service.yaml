@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: client-service
+  labels:
+    type: infrastructure
+spec:
+  selector:
+    app: client
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 9000
+    nodePort: 30303
+  type: LoadBalancer

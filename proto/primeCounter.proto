@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package primer;
+
+service Client {
+    rpc SendPrimeCountRequest(PrimeCounterPayload) returns (PrimeCounterReply) {}
+}
+service Worker {
+    rpc SendPrimeCountResult(TotalPrimesResponse) returns (SimpleReply) {}
+}
+
+message PrimeCounterPayload {
+    int32 from = 1;
+    int32 until = 2;
+}
+message PrimeCounterReply {
+    int32 total = 1;
+}
+message TotalPrimesResponse {
+    int32 total = 1;
+    string batchID = 2;
+}
+message SimpleReply {
+    string message = 1;
+}

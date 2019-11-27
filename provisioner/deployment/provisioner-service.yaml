@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: provisioner-service
+  labels:
+    type: infrastructure
+spec:
+  selector:
+    app: provisioner
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 5001
+  type: ClusterIP
+

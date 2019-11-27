@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: worker-image-name-and-tag
+  namespace: default
+data:
+  IMAGE.NAME_TAG: "talharegistry.azurecr.io/worker:0.0.0"
+  REQUEST.CPU: "10m"
+  REQUEST.MEMORY: "30Mi"
+  IMAGE.PULLSECRET: "talhasecret"

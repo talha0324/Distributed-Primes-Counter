@@ -1,0 +1,41 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: provisioner-deployment
+  labels:
+    type: infrastructure
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: provisioner
+    spec:
+      containers:
+      - name: provisioner
+        env:
+        image: talharegistry.azurecr.io/provisioner:0.0.0
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "50m"
+          limits:
+            memory: "100Mi"
+            cpu: "100m"
+        command: ["./provisioner"]
+        args: ["provisioner-service.default.svc.cluster.local:8080"]
+        ports:
+        - containerPort: 5001
+        imagePullPolicy: IfNotPresent
+      volumes:
+      - name: config-volume
+        configMap:
+          name: worker-image-name-and-tag
+      imagePullSecrets:
+      - name: talhasecret
+      priorityClassName: high-priority

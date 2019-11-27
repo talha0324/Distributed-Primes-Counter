@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body{
+            padding: 40px;
+        }
+        .btn{
+            padding: 0;
+        }
+        .waves-button-input{
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <title>
+        <%=title %>
+    </title>
+</head>
+<body>
+    <a href="/"> <i class="material-icons">home</i>|<i class="material-icons">refresh</i>  </a>
+    <% if(result){ %>
+        <h1>Result is: <%=result%> </h1>
+    <% } else { %>
+        <h1>Count Primes Between:</h1>
+        <div class="row">
+            <form action="/" method="POST"  class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="number" min="0" id="min" name="from"><br />
+                        <label for="min">Min</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="number" min="0" id="max" name="until"><br />
+                        <label for="max">Min</label>
+                    </div>
+                </div>
+                <input type="submit" value="Send message" class="btn waves-effect waves-light enter">
+                <p class='message'><strong> Message: </strong> <%=msg %></p>
+        </form>
+            <div class="loading" style="display: none">
+                <img src="loading.gif" alt="loading" />
+            </div>
+        </div>
+    <% } %>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript">
+        $('.enter').on('click', (e) => {
+            $('.message').hide();
+            $('.loading').show(300)
+        })
+    </script>
+</body>
+</html>
